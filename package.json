@@ -2,10 +2,17 @@
   "name": "cf_3_react",
   "version": "1.0.0",
   "description": "ArtCine React App",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.10.3",
+    "process": "^0.11.10"
+  }
 }
