@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import silenceImg from '../../img/silence.png';
@@ -6,32 +6,16 @@ import akiraImg from '../../img/akira.png';
 import fountainImg from '../../img/fountain.png';
 
 export const MainView = () => {
-	const [movie, setMovie] = useState([
-		{
-			id: 1,
-			title: 'Silence of the Lambs',
-			image: silenceImg,
-			description: 'A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.',
-			director: 'Jonathan Demme',
-		},
-		{
-			id: 2,
-			title: 'Akira',
-			image: akiraImg,
-			description:
-				'A secret military project endangers Neo-Tokyo when it turns a biker gang member into a rampaging psychic psychopath who can only be stopped by two teenagers and a group of psychics.',
-			director: 'Katsuhiro Otomo',
-		},
-		{
-			id: 3,
-			title: 'The Fountain',
-			image: fountainImg,
-			description: 'As a modern-day scientist, Tommy is struggling with mortality, desperately searching for the medical breakthrough that will save the life of his cancer-stricken wife, Izzi.',
-			director: 'Darren Aronofsky',
-		},
-	]);
-
+	const [movie, setMovie] = useState([]);
 	const [selectedMovie, setSelectedMovie] = useState(null);
+
+	useEffect(() => {
+		fetch('https://art-cine-be3340ead7b8.herokuapp.com/movies')
+			.then((res) => res.json())
+			.then((data) => {
+				setMovie(data);
+			});
+	}, []);
 
 	if (selectedMovie) {
 		return <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />;
@@ -43,9 +27,11 @@ export const MainView = () => {
 		<div>
 			{movie.map((movie) => (
 				<MovieCard
-					key={movie.id}
+					key={movie._id}
 					movie={movie}
+					movieId={movie.movieId}
 					onMovieClick={(newSelectedMovie) => {
+						console.log('Selected Movie: ', newSelectedMovie);
 						setSelectedMovie(newSelectedMovie);
 					}}
 				/>
