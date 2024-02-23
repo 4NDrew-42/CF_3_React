@@ -1,0 +1,27 @@
+.movie-card {
+	background-color: rgba(33, 37, 41, 0.8); /* Dark grey semi-transparent */
+	color: white;
+	/* White text */
+}
+
+.movie-card-img {
+	position: relative;
+}
+
+.movie-card-body {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(33, 37, 41, 0.7); /* Slightly more transparency for overlap */
+	color: white; /* Ensure text is white */
+	word-wrap: break-word; /* Ensures text wraps within the container */
+	overflow-wrap: break-word;
+}
+
+/* Ensuring text doesn't overflow */
+.movie-card-title,
+.movie-card-text {
+	text-size-adjust: 50%;
+	word-wrap: break-word; /* Ensures text wraps within the container */
+	overflow-wrap: break-word;
+}

@@ -1,10 +1,15 @@
+import React from 'react';
 import { useState } from 'react';
+import { Button, Form, Card } from 'react-bootstrap';
+import './login-view.scss';
+
 export const LoginView = ({ onLoggedIn }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		// Log for debugging; remove or replace with a more secure logging method in production.
 		console.log(username);
 
 		const data = {
@@ -26,32 +31,39 @@ export const LoginView = ({ onLoggedIn }) => {
 				return response.json();
 			})
 			.then((data) => {
-				console.log('Login response: ', data);
+				console.log('Login response: ', data); // Log for debugging purposes
 				if (data.user) {
 					localStorage.setItem('user', JSON.stringify(data.user));
 					localStorage.setItem('token', data.token);
 					onLoggedIn(data.user, data.token);
 				} else {
-					alert('No such user'); // This part might need adjusting based on how your API handles login failures
+					alert('No such user');
 				}
 			})
-			.catch((e) => {
-				console.log(e);
+			.catch((error) => {
+				console.error('Error during login: ', error);
 				alert('Something went wrong');
 			});
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Username:
-				<input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-			</label>
-			<label>
-				Password:
-				<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-			</label>
-			<button type="submit">Submit</button>
-		</form>
+		<Card className="auth-card">
+			<div className="bold">ArtCine Login</div>
+			<Form onSubmit={handleSubmit}>
+				<Form.Group controlId="formUsername" className="mb-3">
+					<Form.Label>Username</Form.Label>
+					<Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} required minLength="3" />
+				</Form.Group>
+
+				<Form.Group controlId="formPassword" className="mb-3">
+					<Form.Label>Password</Form.Label>
+					<Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+				</Form.Group>
+
+				<Button variant="dark" type="submit">
+					Submit
+				</Button>
+			</Form>
+		</Card>
 	);
 };

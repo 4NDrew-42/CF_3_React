@@ -1,18 +1,23 @@
 import { createRoot } from 'react-dom/client';
-
+import { Container } from 'react-bootstrap';
 import { MainView } from './components/main-view/main-view.jsx';
-
-// Import statement to indicate that you need to bundle `./index.scss`
+// Directly import Bootstrap CSS (if not already imported in index.scss)
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';
 
-// Main component (will eventually use all the others)
 const App = () => {
-	return <MainView />;
+	return (
+		<Container>
+			<MainView />
+		</Container>
+	);
 };
 
-// Finds the root of your app
 const container = document.querySelector('#root');
-const root = createRoot(container);
-
-// Tells React to render your app in the root DOM element
-root.render(<App />);
+// Ensure container is not null
+if (container) {
+	const root = createRoot(container);
+	root.render(<App />);
+} else {
+	console.error('Root container not found');
+}

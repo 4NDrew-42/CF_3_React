@@ -1,0 +1,36 @@
+.movie-card {
+	background-color: rgba(33, 37, 41, 0.8);
+	color: white;
+	aspect-ratio: 4 / 5;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end; /* Adjusted to push content to the bottom */
+	overflow: hidden;
+	padding-top: 56.25%; /* Adjust this value based on your needs */
+}
+
+.movie-card-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.movie-card-body {
+	//background-color: rgba(33, 37, 41, 0.7);
+	color: white;
+	/* Removed absolute positioning, rely on flexbox instead */
+}
+.auth-card {
+	width: 60%;
+	margin: 0;
+	background-color: rgb(86, 86, 86) !important;
+	color: rgb(255, 255, 255);
+	text-align: left;
+	word-wrap: break-word; /* Ensures text wraps within the container */
+	overflow-wrap: break-word;
+	outline: none;
+}

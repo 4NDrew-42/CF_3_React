@@ -1,5 +1,19 @@
 $color: steelblue;
 
+// 2. Import Bootstrap SCSS
+@import '~bootstrap/scss/bootstrap';
+
+// 3. Define your custom styles after importing Bootstrap
 .my-flix {
-    color: $color;
+	color: $color;
+}
+.btn-custom {
+	background-color: black !important; /* Override Bootstrap's background color */
+	color: white !important; /* Ensure text is white */
+	border: 1px !important; /* Optional: remove border */
+}
+
+#myContainer .auth-card {
+	border: none;
+	outline: none;
 }
