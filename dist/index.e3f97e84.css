@@ -18,8 +18,6 @@
 }
 
 .movie-card-title, .movie-card-text {
-  -moz-text-size-adjust: 50%;
-  text-size-adjust: 50%;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
