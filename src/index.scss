@@ -9,11 +9,39 @@ $color: steelblue;
 }
 .btn-custom {
 	background-color: black !important; /* Override Bootstrap's background color */
-	color: white !important; /* Ensure text is white */
+	color: rgb(255, 255, 255) !important; /* Ensure text is white */
 	border: 1px !important; /* Optional: remove border */
 }
 
 #myContainer .auth-card {
 	border: none;
 	outline: none;
+}
+
+body {
+	background-image: url('./img/cinefile2.webp');
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.transparent-blur-overlay {
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 1rem;
+	background-color: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(23px);
+}
+
+.navbar {
+	width: 100vw; /* Ensure it spans the full viewport width */
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.container-fluid {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
 }

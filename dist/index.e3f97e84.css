@@ -1,86 +1,47 @@
 .movie-card {
-  color: #fff;
-  background-color: #212529cc;
+  border-radius: .25rem;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+  background-color: #ffffff40 !important;
+}
+
+.image-container {
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 50rem;
+  margin-bottom: 1rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .movie-card-img {
-  position: relative;
+  width: auto;
+  height: 100%;
+  margin: 0 !important;
 }
 
 .movie-card-body {
   color: #fff;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  background-color: #212529b3;
-  width: 100%;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  background-color: #603c1fbf;
+  width: 101%;
+  padding: 10px;
   position: absolute;
   bottom: 0;
+  right: .01px;
 }
 
 .movie-card-title, .movie-card-text {
   word-wrap: break-word;
   overflow-wrap: break-word;
-}
-
-.back-button {
-  color: #f5f5f5;
-  background-color: #1e90ff;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 12px;
-}
-
-.bold {
-  font-family: Futura, sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.auth-card {
-  color: #834444;
-  text-align: left;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  background-color: #2679cccc;
-  outline: none;
-  width: 60%;
-  margin: 0;
-}
-
-.movie-card {
   color: #fff;
-  aspect-ratio: 4 / 5;
-  background-color: #212529cc;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-  padding-top: 56.25%;
-  display: flex;
-  overflow: hidden;
-}
-
-.movie-card-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.movie-card-body {
-  color: #fff;
-}
-
-.auth-card {
-  color: #fff;
-  text-align: left;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  outline: none;
-  width: 60%;
-  margin: 0;
-  background-color: #565656 !important;
 }
 
 :root {
@@ -12112,6 +12073,200 @@ textarea.form-control-lg {
 #myContainer .auth-card {
   border: none;
   outline: none;
+}
+
+body {
+  background-image: url("cinefile2.ecaf94e5.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.transparent-blur-overlay {
+  -webkit-backdrop-filter: blur(23px);
+  backdrop-filter: blur(23px);
+  background-color: #fff3;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: absolute;
+}
+
+.navbar {
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.movie-view-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  display: flex;
+}
+
+.movie-view {
+  -webkit-backdrop-filter: blur(13px);
+  backdrop-filter: blur(13px);
+  background-color: #ffffff40;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2rem;
+  display: flex;
+}
+
+.movie-view-left, .movie-view-right {
+  flex: 1;
+  padding: 1rem;
+}
+
+.movie-view-image {
+  object-fit: cover;
+  border-radius: 1rem;
+  width: 100%;
+  height: auto;
+}
+
+.back-button {
+  padding: .5rem 2rem;
+  position: fixed;
+  bottom: 20px;
+  left: 92%;
+  transform: translateX(-50%);
+}
+
+.movie-view-text {
+  color: #fff;
+}
+
+.bold {
+  font-family: Futura, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.auth-card {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: #ffffff2e;
+  border-radius: .5rem;
+  max-width: 400px;
+  margin: 10vh auto auto;
+  padding: 2rem;
+  box-shadow: 0 4px 6px #0000001a;
+}
+
+.bold {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.btn-dark {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: .25rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 .2rem #21252940;
+}
+
+.signup-view {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background-color: #ffffff20;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+}
+
+.signup-card {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background-color: #ffffff53;
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+.form-label {
+  color: #000;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.btn-dark {
+  width: 100%;
+}
+
+.welcome {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.welcome1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.movie-card {
+  color: #fff;
+  aspect-ratio: 4 / 5;
+  background-color: #212529cc;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  padding-top: 5%;
+  display: flex;
+  overflow: hidden;
+}
+
+.movie-card-img {
+  position: relative;
+}
+
+.movie-card-body {
+  color: #fff;
+}
+
+.auth-card {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  color: #fff;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  outline: none;
+  width: 60%;
+  margin: 0;
+  background-color: #56565662 !important;
 }
 
 :root {

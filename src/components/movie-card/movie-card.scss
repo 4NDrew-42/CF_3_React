@@ -1,26 +1,45 @@
 .movie-card {
-	background-color: rgba(33, 37, 41, 0.8); /* Dark grey semi-transparent */
-	color: white;
-	/* White text */
+	margin-top: 2rem;
+	overflow: hidden;
+	position: relative;
+	border-radius: 0.25rem;
+	background-color: rgba(255, 255, 255, 0.25) !important;
+	backdrop-filter: blur(8px) !important;
+}
+
+.image-container {
+	position: relative;
+	height: 50rem; /* Fixed height for consistency */
+	width: fit-content; /* Full width of the card */
+	display: flex;
+	margin-bottom: 1rem;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
 }
 
 .movie-card-img {
-	position: relative;
+	height: 100%; /* Consistent height */
+	margin: 0 !important;
+	width: auto; /* Variable width to maintain aspect ratio */
+	/* Ensures the image is scaled correctly without being cropped */
 }
 
 .movie-card-body {
+	padding: 1rem;
 	position: absolute;
 	bottom: 0;
-	width: 100%;
-	background-color: rgba(33, 37, 41, 0.7); /* Slightly more transparency for overlap */
-	color: white; /* Ensure text is white */
-	word-wrap: break-word;
-	overflow-wrap: break-word;
+	width: 101%;
+	background-color: rgba(96, 60, 31, 0.75); /* Semi-transparent */
+	color: white;
+	padding: 10px;
+	backdrop-filter: blur(12px);
+	right: 0.01px;
 }
 
-/* Ensuring text doesn't overflow */
 .movie-card-title,
 .movie-card-text {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+	color: white; /* Ensures text color is consistent */
 }

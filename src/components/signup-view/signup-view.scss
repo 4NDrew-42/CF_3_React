@@ -1,10 +1,45 @@
-.auth-card {
-	width: 60%;
-	margin: 0;
-	background-color: rgba(38, 121, 204, 0.8);
-	color: rgb(131, 68, 68);
-	text-align: left;
-	word-wrap: break-word; /* Ensures text wraps within the container */
-	overflow-wrap: break-word;
-	outline: none;
+.signup-view {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh; // Full viewport height to center vertically
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.126);
+	backdrop-filter: blur(25px);
+}
+
+.signup-card {
+	max-width: 500px; // Limit card size for better form presentation
+	width: 100%; // Responsive to container size
+	background-color: rgba(255, 255, 255, 0.326);
+	backdrop-filter: blur(25px);
+	border-radius: 0.5rem;
+	padding: 20px;
+}
+
+// Additional styles for inputs, labels, and button if needed
+.form-label {
+	color: #000; // Example label color
+}
+
+.form-control {
+	margin-bottom: 10px; // Spacing between form inputs
+}
+
+.btn-dark {
+	width: 100%; // Full-width button
+}
+
+.welcome {
+	font-size: 2rem; // Large font size
+	font-weight: bold; // Bold text
+	margin-bottom: 1rem; // Spacing below the title
+	text-align: center; // Center-align the title
+}
+
+.welcome1 {
+	font-size: 1rem; // Large font size
+	font-weight: bold; // Bold text
+	margin-bottom: 1rem; // Spacing below the title
+	text-align: center; // Center-align the title
 }

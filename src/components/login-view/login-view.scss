@@ -3,3 +3,37 @@
 	font-weight: bold; // Makes the text bold
 	font-family: 'Futura', sans-serif; // Sets Futura as the primary font, with a generic sans-serif as the fallback
 }
+
+.auth-card {
+	max-width: 400px; // Restricting card width for aesthetics
+	margin: auto; // Centering the card horizontally
+	margin-top: 10vh; // Adding some vertical spacing from the top
+	padding: 2rem; // Internal spacing for breathing room around form elements
+	background-color: rgba(255, 255, 255, 0.18); // Semi-transparent white
+	backdrop-filter: blur(10px); // Adding a backdrop blur for focus
+	border-radius: 0.5rem; // Rounded corners for a softer look
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+}
+
+.bold {
+	font-weight: bold; // Ensuring the title "ArtCine Login" is prominent
+	margin-bottom: 1rem; // Spacing between the title and the form
+	text-align: center; // Center-align the title for balance
+}
+
+.btn-dark {
+	width: 100%; // Making the submit button full-width for easier clickability
+	margin-top: 1rem; // Spacing above the button
+}
+
+.form-label {
+	font-weight: bold; // Making labels bold for clarity
+}
+
+// Additional styling as needed for input fields for focus, hover, etc.
+.form-control {
+	border-radius: 0.25rem; // Rounded edges for inputs
+	&:focus {
+		box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.25); // Custom focus shadow
+	}
+}

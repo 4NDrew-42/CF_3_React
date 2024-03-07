@@ -2,21 +2,17 @@
 	background-color: rgba(33, 37, 41, 0.8);
 	color: white;
 	aspect-ratio: 4 / 5;
-	margin-bottom: 1rem;
+	margin-top: 2rem;
+	margin-left: 1.5rem;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end; /* Adjusted to push content to the bottom */
+	justify-content: center; /* Adjusted to push content to the bottom */
 	overflow: hidden;
-	padding-top: 56.25%; /* Adjust this value based on your needs */
+	padding-top: 5%; /* Adjust this value based on your needs */
 }
 
 .movie-card-img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+	position: relative;
 }
 
 .movie-card-body {
@@ -27,7 +23,8 @@
 .auth-card {
 	width: 60%;
 	margin: 0;
-	background-color: rgb(86, 86, 86) !important;
+	background-color: rgba(86, 86, 86, 0.384) !important;
+	backdrop-filter: blur(25px);
 	color: rgb(255, 255, 255);
 	text-align: left;
 	word-wrap: break-word; /* Ensures text wraps within the container */

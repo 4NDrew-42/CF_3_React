@@ -1,7 +1,42 @@
+.movie-view-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; /* Full viewport height */
+	padding: 1rem; /* Padding around the container */
+}
+
+.movie-view {
+	display: flex;
+	width: 100%; /* Adjust based on your preference */
+	max-width: 1200px; /* Maximum width */
+	background-color: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(13px);
+	margin-bottom: 2rem; /* Space above the back button */
+	border-radius: 1rem;
+}
+
+.movie-view-left,
+.movie-view-right {
+	flex: 1; /* Each takes up equal space */
+	padding: 1rem; /* Padding around content */
+}
+
+.movie-view-image {
+	width: 100%; /* Full width of its container */
+	height: auto; /* Maintain aspect ratio */
+	object-fit: cover; /* Cover the area nicely */
+	border-radius: 1rem;
+}
+
 .back-button {
-	padding: 4px 12px 4px 12px;
-	color: whitesmoke;
-	background-color: dodgerblue;
-	border: none;
-	border-radius: 4px;
+	position: fixed;
+	bottom: 20px; /* 20px from the bottom */
+	left: 92%;
+	transform: translateX(-50%); /* Center horizontally */
+	padding: 0.5rem 2rem; /* Larger click area */
+}
+.movie-view-text {
+	color: white;
 }
