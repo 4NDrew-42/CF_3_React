@@ -12269,6 +12269,58 @@ body {
   background-color: #56565662 !important;
 }
 
+.profile-view {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background-color: #ffffff20;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+}
+
+.profile-card {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background-color: #ffffff53;
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 750px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.welcome {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.edit-button, .delete-button {
+  margin-left: 10px;
+}
+
+.favorite-movies-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.form-label {
+  color: #000;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.btn-dark {
+  width: 100%;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

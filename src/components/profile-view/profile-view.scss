@@ -1,0 +1,51 @@
+.profile-view {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 800px; // Reduced the maximum width
+	margin: 0 auto; // Center the profile-view element horizontally
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.126);
+	backdrop-filter: blur(25px);
+}
+
+.profile-card {
+	max-width: 750px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.326);
+	backdrop-filter: blur(25px);
+	border-radius: 0.5rem;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.welcome {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+.edit-button,
+.delete-button {
+	margin-left: 10px;
+}
+
+.favorite-movies-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+// Additional styles for inputs, labels, and button
+.form-label {
+	color: #000;
+}
+
+.form-control {
+	margin-bottom: 10px;
+}
+
+.btn-dark {
+	width: 100%;
+}
