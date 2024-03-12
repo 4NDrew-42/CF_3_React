@@ -12144,6 +12144,29 @@ body {
   transform: translateX(-50%);
 }
 
+.movie-view-actions {
+  justify-content: end;
+  align-items: center;
+  margin-top: 15px;
+  display: flex;
+}
+
+.movie-view-actions .favorite-button {
+  margin-right: auto;
+}
+
+.movie-view-actions .back-button {
+  margin-left: 15px;
+}
+
+.fav-button {
+  padding: .5rem 2rem;
+  position: fixed;
+  bottom: 20px;
+  left: 92%;
+  transform: translateX(-50%);
+}
+
 .movie-view-text {
   color: #fff;
 }
@@ -12282,6 +12305,18 @@ body {
 }
 
 .profile-card {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background-color: #ffffff53;
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: auto;
+  padding: 20px;
+}
+
+.profile-info {
   -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
   background-color: #ffffff53;

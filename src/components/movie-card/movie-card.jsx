@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Heart } from 'react-bootstrap-icons';
 import { HeartFill } from 'react-bootstrap-icons';
 import './movie-card.scss';
@@ -9,17 +10,47 @@ import '../../index.scss';
 
 export const MovieCard = ({ movie, user, token, onFavoriteToggle }) => {
 	const navigate = useNavigate();
+	const [isFavorite, setIsFavorite] = useState(user?.favoriteMovies.includes(movie._id));
 
 	const handleCardClick = () => {
 		navigate(`/movies/${movie._id}`);
 	};
 
-	const handleFavoriteClick = (event) => {
-		event.stopPropagation(); // Prevent the card click event from triggering
-		onFavoriteToggle(movie._id);
-	};
+	useEffect(() => {
+		setIsFavorite(user?.favoriteMovies.includes(movie._id));
+	}, [user, movie._id]);
 
-	const isFavorite = user && user.favorites && user.favorites.includes(movie._id);
+	const handleFavoriteClick = async (event) => {
+		event.stopPropagation(); // Prevent the card click event from triggering
+
+		console.log('User:', user);
+		console.log('Movie ID:', movie._id);
+
+		if (!user || !token) {
+			console.error('User or token not available');
+			return;
+		}
+
+		try {
+			const movieId = movie._id; // Use the _id directly as a string
+
+			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			if (response.ok) {
+				setIsFavorite(true); // Optimistically update the local state
+				onFavoriteToggle(movieId); // Notify the MainView to update the server state
+			} else {
+				console.error('Failed to add movie to favorites');
+			}
+		} catch (error) {
+			console.error('Error adding movie to favorites:', error);
+		}
+	};
 
 	return (
 		<Card className="movie-card transparent-blur-overlay" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
@@ -38,6 +69,8 @@ export const MovieCard = ({ movie, user, token, onFavoriteToggle }) => {
 		</Card>
 	);
 };
+
+// ... (PropTypes remain the same)
 
 MovieCard.propTypes = {
 	movie: PropTypes.shape({

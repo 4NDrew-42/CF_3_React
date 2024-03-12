@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+import { Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
-import { Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ProfileView } from '../profile-view/profile-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
+
 import './main-view.scss';
 
 export const MainView = () => {
@@ -45,11 +47,11 @@ export const MainView = () => {
 	}, [token]);
 
 	useEffect(() => {
-		if (!token || !user || !user.Username) {
+		if (!token || !user || !user.username) {
 			return;
 		}
 
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.Username}`, {
+		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -78,13 +80,16 @@ export const MainView = () => {
 	};
 
 	const handleFavoriteToggle = async (movieId) => {
-		if (!user || !token) {
+		if (!user || !user.username || !movieId || !token) {
+			console.error('Invalid user or movie data');
 			return;
 		}
 
+		const isFavorite = user.favoriteMovies.includes(movieId);
+		const method = isFavorite ? 'DELETE' : 'POST';
+
 		try {
-			const method = user.FavoriteMovies.includes(movieId) ? 'DELETE' : 'POST';
-			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.Username}/favoriteMovies/${movieID}`, {
+			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}/movies/${movieId}`, {
 				method,
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -92,14 +97,9 @@ export const MainView = () => {
 			});
 
 			if (response.ok) {
-				const updatedUser = { ...user };
-				if (method === 'POST') {
-					updatedUser.FavoriteMovies = [...user.FavoriteMovies, movieId];
-				} else {
-					updatedUser.FavoriteMovies = user.FavoriteMovies.filter((id) => id !== movieId);
-				}
-				setUser(updatedUser);
-				localStorage.setItem('user', JSON.stringify(updatedUser));
+				const updatedUser = await response.json();
+				setUser(updatedUser); // Update the user state with the new favorite list
+				localStorage.setItem('user', JSON.stringify(updatedUser)); // Optionally update localStorage
 			} else {
 				throw new Error('Failed to update favorite movies');
 			}
@@ -150,7 +150,7 @@ export const MainView = () => {
 									<Navigate to="/login" replace />
 								) : (
 									<Col md={8}>
-										<MovieView movies={movies} />
+										<MovieView movies={movies} user={user} onFavoriteToggle={handleFavoriteToggle} token={token} />
 									</Col>
 								)
 							}
@@ -173,7 +173,7 @@ export const MainView = () => {
 								)
 							}
 						/>
-						<Route path="/users/:username" element={user ? <ProfileView user={user} token={token} /> : <Navigate to="/login" replace />} />
+						<Route path="/users/:username" element={user ? <ProfileView user={user} movies={movies} onFavoriteToggle={handleFavoriteToggle} token={token} /> : <Navigate to="/login" replace />} />
 						<Route path="/" element={<Navigate replace to="/movies" />} />
 					</Routes>
 				</Row>

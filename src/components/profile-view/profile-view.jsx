@@ -1,107 +1,47 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MovieCard } from '../movie-card/movie-card';
 import { Button, Form, Card, Row, Col } from 'react-bootstrap';
 import './profile-view.scss';
 
-export const ProfileView = ({ user, token }) => {
+export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 	const [userData, setUserData] = useState(null);
-	const [movies, setMovies] = useState([]);
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
 	const [updatedUsername, setUpdatedUsername] = useState('');
 	const [updatedPassword, setUpdatedPassword] = useState('');
 	const [updatedEmail, setUpdatedEmail] = useState('');
 	const [updatedBirthday, setUpdatedBirthday] = useState('');
 	const [isEditing, setIsEditing] = useState(false);
+	const [error, setError] = useState(null);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!user || !token) return;
+		const fetchUserData = async () => {
+			try {
+				const res = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+					headers: { Authorization: `Bearer ${token}` },
+				});
+				if (!res.ok) throw new Error('Failed to fetch user data');
+				const data = await res.json();
+				setUserData(data);
+			} catch (err) {
+				console.error(err);
+				setError('Failed to fetch user data');
+			}
+		};
 
-		fetch('https://art-cine-be3340ead7b8.herokuapp.com/users', {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				const loggedInUser = data.find((u) => u.username === user.username);
-				setUserData(loggedInUser);
-				fetchFavoriteMovies(loggedInUser.favoriteMovieIds);
-				setUpdatedUsername(loggedInUser.username);
-				setUpdatedEmail(loggedInUser.email);
-				setUpdatedBirthday(loggedInUser.birthday);
-			})
-			.catch((err) => console.error(err));
+		fetchUserData();
 	}, [user, token]);
 
-	const fetchFavoriteMovies = (favoriteMovieIds) => {
-		fetch('https://art-cine-be3340ead7b8.herokuapp.com/movies', {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				const moviesFromApi = data.map((doc) => ({
-					_id: doc._id,
-					Title: doc.title,
-					Director: doc.director.name,
-					Description: doc.description,
-					ImageURL: doc.imageurl,
-				}));
-				const favoritedMovies = moviesFromApi.filter((movie) => favoriteMovieIds.includes(movie._id));
-				setMovies(moviesFromApi);
-				setFavoriteMovies(favoritedMovies);
-			})
-			.catch((err) => console.error(err));
-	};
+	useEffect(() => {
+		if (movies && user && user.favoriteMovies) {
+			setFavoriteMovies(movies.filter((movie) => user.favoriteMovies.includes(movie._id)));
+		}
+	}, [movies, user]);
 
-	const updateUserData = (updatedData) => {
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user._id}`, {
-			method: 'PUT',
-			headers: {
-				Authorization: `Bearer ${token}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(updatedData),
-		})
-			.then((res) => res.json())
-			.then((data) => setUserData(data))
-			.catch((err) => console.error(err));
-	};
-
-	const deregisterUser = () => {
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user._id}`, {
-			method: 'DELETE',
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-			.then(() => {
-				localStorage.clear();
-				// Redirect to login page
-			})
-			.catch((err) => console.error(err));
-	};
-
-	const handleFavoriteMovie = (movieId, isFavorite) => {
-		const updatedFavoriteMovieIds = isFavorite ? userData.favoriteMovieIds.filter((id) => id !== movieId) : [...userData.favoriteMovieIds, movieId];
-
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user._id}`, {
-			method: 'PUT',
-			headers: {
-				Authorization: `Bearer ${token}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ favoriteMovieIds: updatedFavoriteMovieIds }),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				setUserData(data);
-				fetchFavoriteMovies(data.favoriteMovieIds);
-			})
-			.catch((err) => console.error(err));
-	};
-	const handleUpdate = (event) => {
+	const handleUpdate = async (event) => {
 		event.preventDefault();
 
 		const data = {
@@ -111,38 +51,84 @@ export const ProfileView = ({ user, token }) => {
 			birthday: updatedBirthday,
 		};
 
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${userData._id}`, {
-			method: 'PUT',
-			headers: {
-				Authorization: `Bearer ${token}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		})
-			.then((res) => res.json())
-			.then((data) => setUserData(data))
-			.catch((err) => console.error(err));
+		try {
+			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
 
-		setIsEditing(false);
+			if (response.ok) {
+				const updatedData = await response.json();
+				setUserData(updatedData);
+				setIsEditing(false);
+			} else {
+				setError('Failed to update user data');
+			}
+		} catch (error) {
+			console.error('Error updating user data:', error);
+			setError('Failed to update user data');
+		}
 	};
 
-	const handleDelete = () => {
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${userData._id}`, {
-			method: 'DELETE',
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-			.then(() => {
+	const handleDelete = async () => {
+		try {
+			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			if (response.ok) {
 				localStorage.clear();
-				// Redirect to login page
-			})
-			.catch((err) => console.error(err));
+				// Redirect to login page or update app state
+			} else {
+				setError('Failed to delete account');
+			}
+		} catch (error) {
+			console.error('Error deleting account:', error);
+			setError('Failed to delete account');
+		}
+	};
+
+	const handleFavoriteToggle = async (movieID) => {
+		try {
+			const isFavorite = userData.favoriteMovies.includes(movieID);
+			const method = isFavorite ? 'DELETE' : 'POST';
+			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}/movies/${movieID}`, {
+				method,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			if (response.ok) {
+				// Optionally update userData state if needed for other parts of the UI
+				// Note: This does not fetch the entire favorite movies list again but updates the local userData for consistency
+				const updatedFavoriteMovies = isFavorite ? userData.favoriteMovies.filter((id) => id !== movieID) : [...userData.favoriteMovies, movieID];
+				setUserData({ ...userData, favoriteMovies: updatedFavoriteMovies });
+
+				// Directly update the favoriteMovies state to reflect changes without removing the movie immediately from the UI
+				// This step is optional based on your UI requirements
+				if (isFavorite) {
+					setFavoriteMovies(favoriteMovies.filter((movie) => movie._id !== movieID));
+				}
+			} else {
+				setError('Failed to update favorite movies');
+			}
+		} catch (error) {
+			console.error('Error updating favorite movies:', error);
+			setError('Failed to update favorite movies');
+		}
 	};
 
 	return (
 		<div className="profile-view">
-			<Card className="profile-card">
+			<Card className="profile-info">
 				<Card.Body>
 					<Row>
 						<Col>
@@ -190,18 +176,41 @@ export const ProfileView = ({ user, token }) => {
 				</Card.Body>
 			</Card>
 
-			{favoriteMovies.length > 0 && (
+			{favoriteMovies.length > 0 ? (
 				<div>
-					<h2 className="favorite-movies-title">Favorite Movies</h2>
+					<h4>Favorite Movies:</h4>
 					<Row>
 						{favoriteMovies.map((movie) => (
-							<Col md={4} key={movie._id}>
-								<MovieCard movie={movie} isFavorite={true} />
+							<Col key={movie._id} xs={12} sm={6} md={4} lg={3}>
+								<Card className="movie-card transparent-blur-overlay" style={{ cursor: 'pointer' }} onClick={() => navigate(`/movies/${movie._id}`)}>
+									<div className="image-container">
+										<Card.Img variant="" src={movie.ImageURL} alt={`The cover of ${movie.Title}`} className="movie-card-img" />
+									</div>
+									<Card.Body className="movie-card-body">
+										<Card.Title className="movie-card-title">{movie.Title}</Card.Title>
+										<Card.Text className="movie-card-text">{movie.Director}</Card.Text>
+										{userData && (
+											<Button
+												variant={userData.favoriteMovies.includes(movie._id) ? 'danger' : 'primary'}
+												onClick={(event) => {
+													event.stopPropagation();
+													handleFavoriteToggle(movie._id, userData.favoriteMovies.includes(movie._id));
+												}}
+											>
+												{userData.favoriteMovies.includes(movie._id) ? 'Remove from Favorites' : 'Add to Favorites'}
+											</Button>
+										)}
+									</Card.Body>
+								</Card>
 							</Col>
 						))}
 					</Row>
 				</div>
+			) : (
+				<p>No favorite movies yet.</p>
 			)}
+
+			{error && <p className="text-danger">{error}</p>}
 		</div>
 	);
 };

@@ -1,12 +1,23 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom'; // Import Link
+import React, { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import './movie-view.scss';
 
-export const MovieView = ({ movies }) => {
-	let { movieId } = useParams(); // Extract movieId from URL
-	const movie = movies.find((m) => m._id === movieId); // Find the movie by ID
+export const MovieView = ({ movies, user, onFavoriteToggle }) => {
+	const { movieId } = useParams();
+	const movie = movies.find((m) => m._id === movieId);
+	const navigate = useNavigate();
 
-	if (!movie) return null; // or some loading/error handling
+	// Determine if the movie is a favorite
+	const isFavorite = user?.favoriteMovies.includes(movie._id);
+
+	const handleFavoriteClick = () => {
+		onFavoriteToggle(movie._id, isFavorite);
+		// Optional: Navigate back or refresh to show updated favorites status
+		// navigate('/users/' + user.username); // Example redirect, adjust as needed
+	};
+
+	if (!movie) return null;
 
 	return (
 		<div className="movie-view-container movie-view-text">
@@ -23,9 +34,14 @@ export const MovieView = ({ movies }) => {
 						<strong>Description:</strong> {movie.Description}
 					</p>
 				</div>
-				<Link to="/movies" className="back-button btn btn-custom">
-					Back
-				</Link>
+				<div className="movie-view-actions d-flex justify-content-between align-items-center">
+					<Button className="favorite-button me-auto" variant={isFavorite ? 'danger' : 'primary'} onClick={handleFavoriteClick}>
+						{isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+					</Button>
+					<Link to="/movies" className="back-button btn btn-custom">
+						Back
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

@@ -37,6 +37,30 @@
 	transform: translateX(-50%); /* Center horizontally */
 	padding: 0.5rem 2rem; /* Larger click area */
 }
+
+.movie-view-actions {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	margin-top: 15px; // Adjust spacing as needed
+
+	.favorite-button {
+		margin-right: auto; // Pushes the button to the left
+	}
+
+	.back-button {
+		margin-left: 15px; // Ensure there's space between buttons
+	}
+}
+
+.fav-button {
+	position: fixed;
+	bottom: 20px; /* 20px from the bottom */
+	left: 92%;
+	transform: translateX(-50%); /* Center horizontally */
+	padding: 0.5rem 2rem; /* Larger click area */
+}
+
 .movie-view-text {
 	color: white;
 }

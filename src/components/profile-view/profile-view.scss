@@ -10,6 +10,17 @@
 }
 
 .profile-card {
+	height: auto;
+	max-width: 300px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.326);
+	backdrop-filter: blur(25px);
+	border-radius: 0.5rem;
+	padding: 20px;
+	margin: auto;
+}
+
+.profile-info {
 	max-width: 750px;
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.326);
