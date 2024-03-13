@@ -70,8 +70,6 @@ export const MovieCard = ({ movie, user, token, onFavoriteToggle }) => {
 	);
 };
 
-// ... (PropTypes remain the same)
-
 MovieCard.propTypes = {
 	movie: PropTypes.shape({
 		_id: PropTypes.string.isRequired,

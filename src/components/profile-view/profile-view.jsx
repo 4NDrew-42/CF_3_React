@@ -107,13 +107,9 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 			});
 
 			if (response.ok) {
-				// Optionally update userData state if needed for other parts of the UI
-				// Note: This does not fetch the entire favorite movies list again but updates the local userData for consistency
 				const updatedFavoriteMovies = isFavorite ? userData.favoriteMovies.filter((id) => id !== movieID) : [...userData.favoriteMovies, movieID];
 				setUserData({ ...userData, favoriteMovies: updatedFavoriteMovies });
 
-				// Directly update the favoriteMovies state to reflect changes without removing the movie immediately from the UI
-				// This step is optional based on your UI requirements
 				if (isFavorite) {
 					setFavoriteMovies(favoriteMovies.filter((movie) => movie._id !== movieID));
 				}

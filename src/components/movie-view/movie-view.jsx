@@ -13,8 +13,6 @@ export const MovieView = ({ movies, user, onFavoriteToggle }) => {
 
 	const handleFavoriteClick = () => {
 		onFavoriteToggle(movie._id, isFavorite);
-		// Optional: Navigate back or refresh to show updated favorites status
-		// navigate('/users/' + user.username); // Example redirect, adjust as needed
 	};
 
 	if (!movie) return null;

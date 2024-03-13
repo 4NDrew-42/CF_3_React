@@ -32,7 +32,6 @@ export const LoginView = ({ onLoggedIn }) => {
 				return response.json();
 			})
 			.then((data) => {
-				console.log('Login response: ', data); // Log for debugging purposes
 				if (data.user) {
 					localStorage.setItem('user', JSON.stringify(data.user));
 					localStorage.setItem('token', data.token);
@@ -50,11 +49,9 @@ export const LoginView = ({ onLoggedIn }) => {
 
 	return (
 		<div className="d-flex justify-content-center align-items-center login-view-container" style={{ height: '100vh' }}>
-			{' '}
-			{/* Ensures full viewport height and centers the card */}
 			<Card className="auth-card">
 				<Card.Body>
-					<h3 className="text-center bold">ArtCine Login</h3> {/* Updated for text-center and bold class */}
+					<h3 className="text-center bold">ArtCine Login</h3> 
 					<Form onSubmit={handleSubmit}>
 						<Form.Group controlId="formUsername" className="mb-3">
 							<Form.Label>Username</Form.Label>
