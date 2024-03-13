@@ -174,7 +174,7 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 
 			{favoriteMovies.length > 0 ? (
 				<div>
-					<h4>Favorite Movies:</h4>
+					<h4 className="profile-view">Favorite Movies</h4>
 					<Row>
 						{favoriteMovies.map((movie) => (
 							<Col key={movie._id} xs={12} sm={6} md={4} lg={3}>
@@ -193,7 +193,7 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 													handleFavoriteToggle(movie._id, userData.favoriteMovies.includes(movie._id));
 												}}
 											>
-												{userData.favoriteMovies.includes(movie._id) ? 'Remove from Favorites' : 'Add to Favorites'}
+												{userData.favoriteMovies.includes(movie._id) ? 'Remove' : 'Add to Favorites'}
 											</Button>
 										)}
 									</Card.Body>

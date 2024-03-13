@@ -1,5 +1,6 @@
 .movie-card {
 	margin-top: 2rem;
+
 	overflow: hidden;
 	position: relative;
 	border-radius: 0.25rem;
@@ -20,7 +21,7 @@
 
 .movie-card-img {
 	height: 100%; /* Consistent height */
-	margin: 0 !important;
+	//margin: 0 !important;
 	width: auto; /* Variable width to maintain aspect ratio */
 	/* Ensures the image is scaled correctly without being cropped */
 }
