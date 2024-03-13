@@ -39,6 +39,7 @@ export const MainView = () => {
 					ImageURL: doc.imageurl,
 				}));
 				setMovies(moviesFromApi);
+				setError(null);
 			})
 			.catch((error) => {
 				console.error('Error fetching movies:', error);
@@ -66,6 +67,7 @@ export const MainView = () => {
 			.then((data) => {
 				setUser(data);
 				localStorage.setItem('user', JSON.stringify(data));
+				setError(null);
 			})
 			.catch((error) => {
 				console.error('Error fetching user data:', error);
@@ -138,6 +140,7 @@ export const MainView = () => {
 											setToken(token);
 											localStorage.setItem('user', JSON.stringify(user));
 											localStorage.setItem('token', token);
+											setError(null);
 										}}
 									/>
 								</Col>

@@ -66,8 +66,7 @@ export const LoginView = ({ onLoggedIn }) => {
 						</Form.Group>
 						<Button variant="dark" type="submit" className="w-100 mt-3">
 							Submit
-						</Button>{' '}
-						{/* w-100 for full width */}
+						</Button>
 					</Form>
 				</Card.Body>
 			</Card>
