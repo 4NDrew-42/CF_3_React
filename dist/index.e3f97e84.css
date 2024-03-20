@@ -12355,6 +12355,21 @@ body {
   width: 100%;
 }
 
+.navbar-custom-form {
+  align-items: center;
+  display: flex;
+}
+
+.form-control {
+  height: 38px;
+  margin-right: .5rem;
+}
+
+.btn-outline-success {
+  color: #6495ed;
+  height: 38px;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

@@ -1,0 +1,14 @@
+.navbar-custom-form {
+	display: flex;
+	align-items: center;
+}
+
+.form-control {
+	margin-right: 0.5rem;
+	height: 38px; // Adjust this height to match your button
+}
+
+.btn-outline-success {
+	height: 38px; // Ensure this matches the form control height
+	color: cornflowerblue;
+}

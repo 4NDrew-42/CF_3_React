@@ -113,7 +113,7 @@ export const MainView = () => {
 
 	return (
 		<BrowserRouter className="container-fluid">
-			<NavigationBar className="navbar" user={user} onLoggedOut={handleLogout} />
+			<NavigationBar className="navbar" user={user} onLoggedOut={handleLogout} movies={movies} />
 			<Container fluid>
 				<Row className="main-view justify-content-md-center">
 					{error && (
