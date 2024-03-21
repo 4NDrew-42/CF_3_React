@@ -1,6 +1,6 @@
 .movie-card {
 	margin-top: 2rem;
-
+	min-width: 250px !important;
 	overflow: hidden;
 	position: relative;
 	border-radius: 0.25rem;
@@ -27,6 +27,7 @@
 }
 
 .movie-card-body {
+	min-width: 250px;
 	padding: 1rem;
 	position: absolute;
 	bottom: 0;

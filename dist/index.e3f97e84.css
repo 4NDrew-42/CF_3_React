@@ -6,6 +6,7 @@
   -webkit-backdrop-filter: blur(8px) !important;
   backdrop-filter: blur(8px) !important;
   background-color: #ffffff40 !important;
+  min-width: 250px !important;
 }
 
 .image-container {
@@ -31,6 +32,7 @@
   backdrop-filter: blur(12px);
   background-color: #603c1fbf;
   width: 101%;
+  min-width: 250px;
   padding: 10px;
   position: absolute;
   bottom: 0;
@@ -12085,6 +12087,7 @@ body {
   background-color: #fff3;
   justify-content: center;
   align-items: center;
+  min-width: 250px;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -12307,6 +12310,7 @@ body {
   background-color: #ffffff53;
   border-radius: .5rem;
   width: 100%;
+  min-width: 250px;
   max-width: 300px;
   height: auto;
   margin: auto;
@@ -12371,7 +12375,12 @@ body {
 }
 
 .input-group {
-  margin-top: .7rem;
+  margin-top: 0;
+}
+
+.navbar {
+  width: 110%;
+  padding: .5rem 3rem !important;
 }
 
 :root {
