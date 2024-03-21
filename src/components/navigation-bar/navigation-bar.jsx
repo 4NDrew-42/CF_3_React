@@ -10,6 +10,11 @@ export const NavigationBar = ({ user, onLoggedOut, movies }) => {
 
 	const handleSearch = (e) => {
 		e.preventDefault();
+
+		if (!searchTerm.trim()) {
+			alert('Please enter a search term');
+			return; // Handle the case where the search term is empty
+		}
 		const foundMovie = movies.find((movie) => movie.Title.toLowerCase().includes(searchTerm.toLowerCase()));
 		if (foundMovie) {
 			navigate(`/movies/${foundMovie._id}`); // Redirect to the MovieView of the found movie
@@ -25,8 +30,8 @@ export const NavigationBar = ({ user, onLoggedOut, movies }) => {
 					ArtCine
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
+				<Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+					<Nav className="align-items-center">
 						{!user && (
 							<>
 								<Nav.Link as={Link} to="/login">
@@ -48,9 +53,9 @@ export const NavigationBar = ({ user, onLoggedOut, movies }) => {
 								<Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
 							</>
 						)}
-						<Form onSubmit={handleSearch} className="navbar-custom-form">
-							<InputGroup>
-								<FormControl className="form-control" type="text" placeholder="Search Movies" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+						<Form inline onSubmit={handleSearch} className="d-flex">
+							<InputGroup className="input-group">
+								<FormControl type="text" placeholder="Search Movies" className="mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 								<Button variant="outline-success" type="submit">
 									Search
 								</Button>

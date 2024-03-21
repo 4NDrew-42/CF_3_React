@@ -168,7 +168,7 @@ export const MainView = () => {
 								) : (
 									<Row>
 										{movies.map((movie) => (
-											<Col md={4} key={movie._id}>
+											<Col xs={12} sm={6} md={4} lg={3} key={movie._id}>
 												<MovieCard movie={movie} user={user} token={token} onFavoriteToggle={handleFavoriteToggle} />
 											</Col>
 										))}

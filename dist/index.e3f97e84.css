@@ -12370,6 +12370,10 @@ body {
   height: 38px;
 }
 
+.input-group {
+  margin-top: .7rem;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
