@@ -23,6 +23,7 @@
     "react-scripts": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "@parcel/transformer-sass": "^2.10.3",
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
