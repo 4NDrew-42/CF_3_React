@@ -20,7 +20,7 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 		if (!user || !token) return;
 		const fetchUserData = async () => {
 			try {
-				const res = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+				const res = await fetch(`https://54.162.127.7/users/${user.username}`, {
 					headers: { Authorization: `Bearer ${token}` },
 				});
 				if (!res.ok) throw new Error('Failed to fetch user data');
@@ -52,7 +52,7 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 		};
 
 		try {
-			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+			const response = await fetch(`https://54.162.127.7/users/${user.username}`, {
 				method: 'PUT',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 
 	const handleDelete = async () => {
 		try {
-			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+			const response = await fetch(`https://54.162.127.7/users/${user.username}`, {
 				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ export const ProfileView = ({ user, movies, token, onFavoriteToggle }) => {
 		try {
 			const isFavorite = userData.favoriteMovies.includes(movieID);
 			const method = isFavorite ? 'DELETE' : 'POST';
-			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}/movies/${movieID}`, {
+			const response = await fetch(`https://54.162.127.7/users/${user.username}/movies/${movieID}`, {
 				method,
 				headers: {
 					Authorization: `Bearer ${token}`,

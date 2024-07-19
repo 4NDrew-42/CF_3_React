@@ -18,7 +18,7 @@ export const LoginView = ({ onLoggedIn }) => {
 			password,
 		};
 
-		fetch('https://art-cine-be3340ead7b8.herokuapp.com/login', {
+		fetch('https://54.162.127.7/movies/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

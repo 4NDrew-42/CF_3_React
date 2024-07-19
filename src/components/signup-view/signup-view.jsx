@@ -20,7 +20,7 @@ export const SignupView = () => {
 			birthday,
 		};
 
-		fetch('https://art-cine-be3340ead7b8.herokuapp.com/users', {
+		fetch('https://54.162.127.7/users', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

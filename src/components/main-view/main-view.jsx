@@ -24,7 +24,7 @@ export const MainView = () => {
 			return;
 		}
 
-		fetch('https://art-cine-be3340ead7b8.herokuapp.com/movies', {
+		fetch('https://54.162.127.7/movies', {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -52,7 +52,7 @@ export const MainView = () => {
 			return;
 		}
 
-		fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}`, {
+		fetch(`https://54.162.127.7/movies/users/${user.username}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -91,7 +91,7 @@ export const MainView = () => {
 		const method = isFavorite ? 'DELETE' : 'POST';
 
 		try {
-			const response = await fetch(`https://art-cine-be3340ead7b8.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+			const response = await fetch(`https://54.162.127.7/movies/users/${user.username}/movies/${movieId}`, {
 				method,
 				headers: {
 					Authorization: `Bearer ${token}`,
