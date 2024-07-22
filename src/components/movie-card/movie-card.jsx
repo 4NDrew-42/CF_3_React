@@ -34,7 +34,7 @@ export const MovieCard = ({ movie, user, token, onFavoriteToggle }) => {
 		try {
 			const movieId = movie._id; // Use the _id directly as a string
 
-			const response = await fetch(`https://54.162.127.7/users/${user.username}/movies/${movieId}`, {
+			const response = await fetch(`http://54.162.127.7/users/${user.username}/movies/${movieId}`, {
 				method: 'POST',
 				headers: {
 					Authorization: `Bearer ${token}`,

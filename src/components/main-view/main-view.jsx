@@ -24,7 +24,7 @@ export const MainView = () => {
 			return;
 		}
 
-		fetch('https://54.162.127.7/movies', {
+		fetch('http://54.162.127.7/movies', {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -52,7 +52,7 @@ export const MainView = () => {
 			return;
 		}
 
-		fetch(`https://54.162.127.7/movies/users/${user.username}`, {
+		fetch(`http://54.162.127.7/movies/users/${user.username}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -91,7 +91,7 @@ export const MainView = () => {
 		const method = isFavorite ? 'DELETE' : 'POST';
 
 		try {
-			const response = await fetch(`https://54.162.127.7/movies/users/${user.username}/movies/${movieId}`, {
+			const response = await fetch(`http://54.162.127.7/movies/users/${user.username}/movies/${movieId}`, {
 				method,
 				headers: {
 					Authorization: `Bearer ${token}`,
