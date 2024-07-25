@@ -18,7 +18,7 @@ export const LoginView = ({ onLoggedIn }) => {
 			password,
 		};
 
-		fetch('http://54.162.127.7/movies/login', {
+		fetch('http://54.162.113.255/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
