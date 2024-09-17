@@ -1,66 +1,129 @@
 .profile-view {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	max-width: 400px; // Reduced the maximum width
-	margin: 0 auto; // Center the profile-view element horizontally
-	padding: 20px;
-	background-color: rgba(255, 255, 255, 0.126);
-	backdrop-filter: blur(25px);
-	border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.126);
+  backdrop-filter: blur(25px);
+  border-radius: 0.5rem;
 }
 
 .profile-card {
-	height: auto;
-	max-width: 300px;
-	min-width: 250px;
-	width: 100%;
-	background-color: rgba(255, 255, 255, 0.326);
-	backdrop-filter: blur(25px);
-	border-radius: 0.5rem;
-	padding: 20px;
-	margin: auto;
+  height: auto;
+  max-width: 300px;
+  min-width: 250px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.326);
+  backdrop-filter: blur(25px);
+  border-radius: 0.5rem;
+  padding: 20px;
+  margin: auto;
 }
 
 .profile-info {
-	display: flex;
-	flex-direction: column;
-	align-self: start;
-	width: 100%;
-	background-color: rgba(255, 255, 255, 0.326);
-	backdrop-filter: blur(25px);
-	border-radius: 0.5rem;
-	padding: 20px;
-	margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.326);
+  backdrop-filter: blur(25px);
+  border-radius: 0.5rem;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .welcome {
-	font-size: 2rem;
-	font-weight: bold;
-	margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 .edit-button,
 .delete-button {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .favorite-movies-title {
-	font-size: 1.5rem;
-	font-weight: bold;
-	margin-top: 20px;
-	margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 // Additional styles for inputs, labels, and button
 .form-label {
-	color: #000;
+  color: #000;
 }
 
 .form-control {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .btn-dark {
-	width: 100%;
+  width: 100%;
+}
+
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.preview-image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.preview-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px dashed #aaa;
+}
+
+/* Resized images gallery */
+.resized-images-gallery {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.resized-image-thumbnail {
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  border: 2px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.resized-image-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* Full-sized image display */
+.full-image-display {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.full-image-display img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #ddd;
 }
